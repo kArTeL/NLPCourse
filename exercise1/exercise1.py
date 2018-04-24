@@ -53,12 +53,33 @@ if __name__ == '__main__':
 
     # start and end index.
     start_idx = word2idx["START"]
-    end_idx = word2idx["END"]
-    smoothie = 0.1
-    print(get_bigram_count(start_idx,end_idx,sentences,V,smoothie))
+    end_idx   = word2idx["END"]
+    smoothie  = 0.1
 
-      # a function to map word indexes back to real words
-    idx2word = dict((v, k) for k, v in iteritems(word2idx))
+    bigram_probs = get_bigram_count(start_idx,end_idx,sentences,V,smoothie)
+
+    while True:
+         # input your own sentence
+        custom = input("Enter your own sentence:\n")
+        custom = custom.lower().split()
+
+        # check that all tokens exist in word2idx (otherwise, we can't get score)
+        bad_sentence = False
+        for token in custom:
+            if token not in word2idx:
+                bad_sentence = True
+
+        if bad_sentence:
+            print("Sorry, you entered words that are not in the vocabulary")
+        else:
+            # convert sentence into list of indexes
+            custom = [word2idx[token] for token in custom]
+            print("SCORE:", get_score(custom, start_idx, end_idx, bigram_probs))
+
+
+        cont = input("Continue? [Y/n]")
+        if cont and cont.lower() in ('N', 'n'):
+            break
 
 
 
