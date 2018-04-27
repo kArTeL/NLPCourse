@@ -17,11 +17,13 @@ if __name__ == '__main__':
     start_id = word2idx['START']
     end_id = word2idx['END']
     lr = 1e-1
-    print(lr)
     #print(inputs)
-    for sentence in sentences: 
-        n = len(sentence)
-        inputs = np.zeros((n-1, V))
-        targets = np.zeros((n-1, V))
-        inputs[np.arange(n-1),sentence[:n-1]] = 1
-        targets[np.arange(n-1),sentence[1:]] = 1
+   # for sentence in sentences: 
+    sentence = sentences[0]
+    n = len(sentence)
+    inputs = np.zeros((n-1, V))
+    targets = np.zeros((n-1, V))
+    inputs[np.arange(n-1),sentence[:n-1]] = 1
+    targets[np.arange(n-1),sentence[1:]] = 1
+    print(inputs)
+    print(inputs.T)
