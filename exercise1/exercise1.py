@@ -4,7 +4,7 @@ from builtins import range, input
 import numpy as np
 from brown import get_sentences_with_word2idx
 
-def get_bigram_count(star_idx, end_idx,  sentences, V, smoothie=1):
+def get_bigram_probs(star_idx, end_idx,  sentences, V, smoothie=1):
     bigram_count_matrix = np.ones((V,V)) * smoothie
     #print(bigram_count_matrix)
 
@@ -56,7 +56,7 @@ if __name__ == '__main__':
     end_idx   = word2idx["END"]
     smoothie  = 0.1
 
-    bigram_probs = get_bigram_count(start_idx,end_idx,sentences,V,smoothie)
+    bigram_probs = get_bigram_probs(start_idx,end_idx,sentences,V,smoothie)
 
     while True:
          # input your own sentence
@@ -80,64 +80,3 @@ if __name__ == '__main__':
         cont = input("Continue? [Y/n]")
         if cont and cont.lower() in ('N', 'n'):
             break
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# def bigramProbabilityAddOne(current, previous, corpus):
-#     # totalPrevios = corpus.words()
-#     # P(current/previous) = (count(previous current) + 1 )/ (count(previous) + corpus.length)
-#     #print("loading corpus")
-#     totalCorpusWords   = corpus.words()
-#     #totalCorpusWords   = [{"":10,"20":}]
-#     print("corpus length %d" % len(totalCorpusWords))
-#     #print("end loading corpus")
-#     wordsFrecuency     = Counter(totalCorpusWords)
-#     #print("words frecuency %s" % wordsFrecuency)
-#     print("starting get unique words")
-#     totalDiferentWords = len(list(wordsFrecuency))
-
-#     print("TOTAL DIFERENT WORDS %d" % totalDiferentWords)
-#     print("END get unique words")
-
-#     previousCount      = wordsFrecuency[previous]
-#     print("the word %s has %d ocurrencies" % (previous, previousCount))
-
-#     return previousCount
-
-# def getUniqueWords(allWords) :
-#     uniqueWords = [] 
-#     for i in allWords:
-#         if not i in uniqueWords:
-#             uniqueWords.append(i)
-#     return uniqueWords
-
-#print(brown.sents())
